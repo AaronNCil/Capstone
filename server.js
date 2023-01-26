@@ -34,7 +34,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/Resources", (req, res) => {
-    const sql = "SELECT * FROM Accounts";
+    const sql = "SELECT * FROM Resources";
     api.query(sql, (err, results) => {
         res.send(results); 
     })
@@ -43,7 +43,7 @@ app.use(express.static("assets"));
 app.use(express.static(path.join(__dirname, "build")));
 app.get("*", (req, res) => {
     try {
-        res.sendFile(path.join(__dirname, "build, "index.html")); 
+        res.sendFile(path.join(__dirname, "build", "index.html"));
     } catch (error) {
         console.error(error); 
         res.status(500).send("Internal Server Error");
