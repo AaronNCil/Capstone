@@ -5,10 +5,10 @@ const path = require("path");
 const mysql = require("mysql"); 
 const bodyParser = require("body-parser");
 const api = mysql.createConnection ({
-    host: "capstone.cbpba6q3mggr.us-east-1.rds.amazonaws.com",
+    host: "cappin.cbpba6q3mggr.us-east-1.rds.amazonaws.com",
     user: "Mariah",
     password: "MariahMarie14", 
-    database: "capstone"
+    database: "Cap"
 })
 
 api.connect((err) => {
@@ -39,6 +39,24 @@ app.get("/Resources", (req, res) => {
         res.send(results); 
     })
 });
+app.get("/Resources", (req, res) => {
+    const sql = "SELECT * FROM Resources WHERE Category='Affordable Housing'";
+    api.query(sql, (err, results) => {
+        res.send(results); 
+    })
+});
+app.get("/Resources", (req, res) => {
+    const sql = "SELECT * FROM Resources WHERE Category = 'Job Training' ";
+    api.query(sql, (err, results) => {
+        res.send(results); 
+    })
+});
+app.get("/Resources", (req, res) => {
+    const sql = "SELECT * FROM Resources WHERE Category = 'Financial Education' ";
+    api.query(sql, (err, results) => {
+        res.send(results); 
+    })
+});
 app.use(express.static("assets"));
 app.use(express.static(path.join(__dirname, "build")));
 app.get("*", (req, res) => {
@@ -53,6 +71,6 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*"); 
     next(); 
 });
-app.listen(3000, () => {
+app.listen(3004, () => {
     console.log("Server started on port 3000")
 })
