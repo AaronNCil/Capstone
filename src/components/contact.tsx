@@ -5,6 +5,7 @@ function contact() {
     <>
     <br />
 <form action="POST" className='contact-container'>
+    <div className='contact-top'>Contact Us For More Questions</div>
     <div className="grid gap-6 mb-6 md:grid-cols-2">
         <div>
             <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>

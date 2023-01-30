@@ -8,6 +8,7 @@ import About from './components/about';
 import Login from  './components/login';
 import Contact from './components/contact'
 import Test from './components/test';
+import Create from './components/createaccount';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
            <Route path="/about" element={<About/>} />
            <Route path="/contact" element={<Contact />} />
            <Route path="/login" element={<Login />} />
+           <Route path="/createaccount" element={<Create />} />
      </Routes>
    <Footer />
    </Router>
