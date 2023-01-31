@@ -57,6 +57,25 @@ app.get("/Resources", (req, res) => {
         res.send(results); 
     })
 });
+
+app.post("/api/signup", (req, res) => {
+    const { name, email, password, location } = req.body;
+    // Insert the data into the Users table
+    api.query(
+      "INSERT INTO Accounts (Username, Email, Passwords, Location) VALUES (?, ?, ?, ?)",
+      [name, email, password, location],
+      (error, results) => {
+        if (error) throw error;
+        if (results.affectedRows > 0) {
+          res.redirect("/login");
+          console.log("added user");
+        } else {
+          res.status(400).json({ message: "Sign up failed" });
+        }
+      }
+    );
+  });
+
 app.use(express.static("assets"));
 app.use(express.static(path.join(__dirname, "build")));
 app.get("*", (req, res) => {
