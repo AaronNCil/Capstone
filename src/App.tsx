@@ -7,7 +7,6 @@ import Home from './components/home';
 import About from './components/about';
 import Login from  './components/login';
 import Contact from './components/contact'
-import Test from './components/test';
 import Create from './components/createaccount';
 
 function App() {

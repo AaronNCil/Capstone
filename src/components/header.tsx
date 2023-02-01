@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import {Link} from  'react-router-dom'
+import { useState } from 'react'
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -9,11 +10,16 @@ const navigation = [
   { name: 'Contact', href: '/contact', current: false },
 ]
 
+
 function classNames(...classes: (string | undefined)[]) {
     return classes.filter(Boolean).join(' ')
   }
 
-export default function header() {
+export default function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  function handleLogin() {
+    setIsLoggedIn(true)
+  }
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -92,6 +98,10 @@ export default function header() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
+                   <div>
+                   {isLoggedIn ? (
+                   <div>Welcome Back!</div>
+                 ) : (
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
@@ -114,6 +124,7 @@ export default function header() {
                         )}
                       </Menu.Item>
                     </Menu.Items>
+                 )}</div>
                   </Transition>
                 </Menu>
               </div>
@@ -141,5 +152,4 @@ export default function header() {
         </>
       )}
     </Disclosure>
-  )
-}
+    )}

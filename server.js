@@ -4,6 +4,7 @@ const cors = require("cors");
 const path = require("path"); 
 const mysql = require("mysql"); 
 const bodyParser = require("body-parser");
+const { application } = require("express");
 const api = mysql.createConnection ({
     host: "cappin.cbpba6q3mggr.us-east-1.rds.amazonaws.com",
     user: "Mariah",
@@ -75,6 +76,25 @@ app.post("/api/signup", (req, res) => {
       }
     );
   });
+
+app.post("/api/login", (req, res) => {
+    const {email, password} = req.body;
+    api.query("SELECT * FROM Accounts WHERE Email = ?", [email], (error, results) => {
+        if (error) throw error;
+        if (results.length > 0) {
+            const user = results[0];
+            if (user.Passwords === password) {
+                res.json({message: "login successful"});
+                console.log("login successful");
+            } else {
+                res.json({message: "login failed"});
+
+            } 
+        } else {
+            res.json({message: "Invalid password or email"});
+        }
+    })
+});
 
 app.use(express.static("assets"));
 app.use(express.static(path.join(__dirname, "build")));
