@@ -4,7 +4,7 @@ function contact() {
   return (
     <>
     <br />
-<form action="POST" className='contact-container'>
+<form action="/api/contact" method="POST" className='contact-container'>
     <div className='contact-top'>Contact Us For More Questions</div>
     <div className="grid gap-6 mb-6 md:grid-cols-2">
         <div>
