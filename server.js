@@ -76,15 +76,15 @@ app.post("/api/signup", (req, res) => {
     );
   });
   app.post("/api/contact", (req, res) => {
-    const { FirstName, LastName, PhoneNumber, Email, Note } = req.body;
+    const { firstname, lastname, phonenumber, email, note } = req.body;
     // Insert the data into the Contact table
     api.query(
       "INSERT INTO Contact (FirstName, LastName, PhoneNumber, Email, Note) VALUES (?, ?, ?, ?, ?)",
-      [FirstName, LastName, PhoneNumber, Email, Note],
+      [firstname, lastname, phonenumber, email, note],
       (error, results) => {
         if (error) throw error;
         if (results.affectedRows > 0) {
-          res.redirect("/home");
+          res.redirect("/");
           console.log("Thank you for contacting us!");
         } else {
           res.status(400).json({ message: "Couldn't send contact. Try again Later." });
