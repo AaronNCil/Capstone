@@ -4,7 +4,7 @@ import {Button} from '@material-tailwind/react'
 function test() {
   return (
     <div>
-      <Button>b
+      <Button>
     </Button>
     </div>
   )
