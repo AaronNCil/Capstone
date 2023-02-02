@@ -144,54 +144,54 @@ app.get("/Forum", (req, res) => {
   });
 });
 
-//adding requests that align with filter methods
-//makes it easier to navigate posts with these filters
-//will try to add a search function but will see how hard that is
-app.get("/Forum", (req, res) => {
-  const sql = "SELECT * FROM Forum WHERE Category='Affordable Housing'";
-  api.query(sql, (err, results) => {
-    res.send(results);
-  });
-});
-app.get("/Forum", (req, res) => {
-  const sql = "SELECT * FROM Forum WHERE Category = 'Job Training' ";
-  api.query(sql, (err, results) => {
-    res.send(results);
-  });
-});
-app.get("/Forum", (req, res) => {
-  const sql = "SELECT * FROM Forum WHERE Category = 'Financial Education' ";
-  api.query(sql, (err, results) => {
-    res.send(results);
-  });
-});
+// //adding requests that align with filter methods
+// //makes it easier to navigate posts with these filters
+// //will try to add a search function but will see how hard that is
+// app.get("/Forum", (req, res) => {
+//   const sql = "SELECT * FROM Forum WHERE Category='Affordable Housing'";
+//   api.query(sql, (err, results) => {
+//     res.send(results);
+//   });
+// });
+// app.get("/Forum", (req, res) => {
+//   const sql = "SELECT * FROM Forum WHERE Category = 'Job Training' ";
+//   api.query(sql, (err, results) => {
+//     res.send(results);
+//   });
+// });
+// app.get("/Forum", (req, res) => {
+//   const sql = "SELECT * FROM Forum WHERE Category = 'Financial Education' ";
+//   api.query(sql, (err, results) => {
+//     res.send(results);
+//   });
+// });
 
-//in this get route going to setup another page so that it displays and gives you access to edit previous posts you've made
-app.get("/Forumedits", (req, res) => {
-  const sql =
-    "SELECT * FROM Forum WHERE Username = 'the username im going to pull from the localstorage'";
-  api.query(sql, (err, results) => {
-    res.send(results);
-  });
-});
+// //in this get route going to setup another page so that it displays and gives you access to edit previous posts you've made
+// app.get("/Forumedits", (req, res) => {
+//   const sql =
+//     "SELECT * FROM Forum WHERE Username = 'the username im going to pull from the localstorage'";
+//   api.query(sql, (err, results) => {
+//     res.send(results);
+//   });
+// });
 
-//going to need a post route so that it updates into the database whatever edits have been made
-app.post("/api/Forumedits", (req, res) => {
-    const { updatedContent } = req.body;
-    // Insert the data into the Contact table
-    api.query(
-      "INSERT INTO Forum (updatedContent) VALUES (?)",
-      [updatedContent],
-      (error, results) => {
-        if (error) throw error;
-        if (results.affectedRows > 0) {
-          res.redirect("/Forum");
-          console.log("You're edits have been made");
-        } else {
-          res
-            .status(400)
-            .json({ message: "Couldn't send updates. Try again Later." });
-        }
-      }
-    );
-  });
+// //going to need a post route so that it updates into the database whatever edits have been made
+// app.post("/api/Forumedits", (req, res) => {
+//     const { updatedContent } = req.body;
+//     // Insert the data into the Contact table
+//     api.query(
+//       "INSERT INTO Forum (updatedContent) VALUES (?)",
+//       [updatedContent],
+//       (error, results) => {
+//         if (error) throw error;
+//         if (results.affectedRows > 0) {
+//           res.redirect("/Forum");
+//           console.log("You're edits have been made");
+//         } else {
+//           res
+//             .status(400)
+//             .json({ message: "Couldn't send updates. Try again Later." });
+//         }
+//       }
+//     );
+//   });

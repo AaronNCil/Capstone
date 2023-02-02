@@ -1,5 +1,7 @@
 import React from "react";
-import axios from "axios";
+import axios from 'axios';
+
+
 export default class Productlist extends React.Component {
 
     state = {
@@ -48,16 +50,15 @@ export default class Productlist extends React.Component {
 
               .map((props: any) => (
               <a key={props.id} href={props.href} className="group">
-                <div className="forumInformation">
-                    <div className="title and content">
-                        <h3>{props.posttitle}</h3>
-                        <br>{props.content}</br>
+                    <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                      <img
+                        src={"images/logo.png"}
+                        alt={""}
+                        className="h-full w-full object-cover object-center group-hover:opacity-75"
+                      />
                     </div>
-                    <div className="username and dateposted">
-                        <a>{props.username}</a> 
-                        <br>on <small>{props.date}</small></br>
-                    </div>
-                </div>
+                    <h3 className="mt-4 text-sm text-gray-700">{props.Title}</h3>
+                    <p className="mt-1 text-lg font-medium text-gray-900">{props.Address}</p>
                </a>
                 ))}
               </div>
@@ -68,4 +69,3 @@ export default class Productlist extends React.Component {
         )
     }
   }
-  
