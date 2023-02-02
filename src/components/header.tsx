@@ -3,7 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from  'react-router-dom'
 import { AuthContext } from '../context/auth'
-import { useContext } from 'react'// 
+import { useContext } from 'react'
 
 
 const navigation = [
@@ -100,22 +100,20 @@ export default function Header() {
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <Menu.Item>
-                      {({ active } ) => (
-                        <p className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>Welcome Back {currentUser.Username}</p>)}
+                        <p className='block px-4 py-2 text-sm text-gray-700'>Welcome Back {currentUser.Username}</p>
                     </Menu.Item>
                     <Menu.Item>
-                      {({ active } ) => (
-                        <span className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')} onClick={logout}>Sign out</span>)}
+                        <span className='block px-4 py-2 text-sm text-gray-700' onClick={logout}>Sign out</span>
                     </Menu.Item>
                     <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                
+                        <Link
+                          to="#"
+                          className='block px-4 py-2 text-sm text-gray-700'
                         >
                           Settings
-                        </a>
-                      )}
+                        </Link>
+
                     </Menu.Item>
                   </Menu.Items>
                 </Transition>
@@ -131,24 +129,22 @@ export default function Header() {
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
-                        {({ active } ) => (
+                
                           <Link
                             to="/login"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className='block px-4 py-2 text-sm text-gray-700' 
                           >
                             Sign in
                           </Link>
-                        )}
+              
                       </Menu.Item>
                       <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          <Link
+                            to="#"
+                            className='block px-4 py-2 text-sm text-gray-700'
                           >
                             Settings
-                          </a>
-                        )}
+                          </Link>
                       </Menu.Item>
                     </Menu.Items>
                   </Transition> )}
