@@ -1,7 +1,9 @@
 import { LockClosedIcon } from '@heroicons/react/20/solid'
-import axios from 'axios';
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/auth';
+import { useContext } from 'react';
 
 
 const Login: React.FC = () => {
@@ -9,19 +11,15 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
- 
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', {
-        email,
-        password,
-    });
-    console.log(response);
+    await login({email, password});
+    navigate('/')
     setSubmitted(true);
-    localStorage.setItem('email', email);
   }catch (err){
     console.log(err);
   }

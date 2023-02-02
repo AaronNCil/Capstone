@@ -4,7 +4,7 @@ const cors = require("cors");
 const path = require("path"); 
 const mysql = require("mysql"); 
 const bodyParser = require("body-parser");
-const { application } = require("express");
+const jwt = require("jsonwebtoken");
 const api = mysql.createConnection ({
     host: "cappin.cbpba6q3mggr.us-east-1.rds.amazonaws.com",
     user: "Mariah",
@@ -94,25 +94,37 @@ app.post("/api/signup", (req, res) => {
     );
   });
 
-app.post("/api/login", (req, res) => {
-    const {email, password} = req.body;
-    api.query("SELECT * FROM Accounts WHERE Email = ?", [email], (error, results) => {
-        if (error) throw error;
-        if (results.length > 0) {
-            const user = results[0];
-            if (user.Passwords === password) {
-                res.json({message: "login successful"});
-                console.log("login successful");
-            } else {
-                res.json({message: "login failed"});
+  app.post('/api/login', (req, res) => {
 
-            } 
-        } else {
-            res.json({message: "Invalid password or email"});
-        }
+    const q = "SELECT * FROM Accounts WHERE EMAIL = ?";
+    const value = req.body.email;
+
+    api.query(q, value, (err, data) => {
+        if (err) return res.status(500).json(err);
+        if (data.length === 0) return res.status(404).json("User not found!");
+        if (req.body.password !== data[0].Passwords) return res.status(400).json("Wrong username or password!");
+        const token = jwt.sign({ id: data[0].id }, "jwtkey");
+        const { password, ...other } = data[0];
+
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .json(other);
+
     })
-});
+    return res.data;
+})
 
+
+app.post("/api/logout", (req, res) => {
+    res.clearCookie("access_token",{
+        sameSite:"none",
+        secure:true
+      });
+      res.status(200).send("User logged out");
+})
 app.use(express.static("assets"));
 app.use(express.static(path.join(__dirname, "build")));
 app.get("*", (req, res) => {
