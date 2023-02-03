@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+BANK OF AMERICA RESOURCES APPLICATION: 
+
+Welcome, and thank you for using our website on Bank of America's resources for the community. Here you can locate resources related to Financial Education, Job Training, and Affordable Housing in the Charlotte region. To access your resources, it's not necessary to create an account just click our 'Resources' tab. However, we'd love it if you'd sign up for the website and make your account. Simply click the 'Sign Up' feature, enter your information, then use that same information to then login. Once you log in, you will be redirected back to the homepage, so you may continue with your researching of resources needs. If you get stuck, we've also implemented a live chat feature where you can speak to one of our chat agents. Thank you for using Bank of America's resources for the community. 
+
+
+
+VIEW MORE DETAILS ON HOW TO USE SPECIFIC FACTORS BELOW : 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
